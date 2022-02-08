@@ -1,0 +1,1 @@
+docker-compose -p spark-etl up -d

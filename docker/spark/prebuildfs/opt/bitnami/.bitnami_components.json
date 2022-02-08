@@ -1,0 +1,30 @@
+{
+    "gosu": {
+        "arch": "amd64",
+        "digest": "16f1a317859b06ae82e816b30f98f28b4707d18fe6cc3881bff535192a7715dc",
+        "distro": "debian-10",
+        "type": "NAMI",
+        "version": "1.14.0-1"
+    },
+    "java": {
+        "arch": "amd64",
+        "digest": "2699ce844c410513ef7fd7180c2a0a6e4c740581a4a999ab5e3bed6bbe8be3bc",
+        "distro": "debian-10",
+        "type": "NAMI",
+        "version": "1.8.312-1"
+    },
+    "python": {
+        "arch": "amd64",
+        "digest": "c081f7f9663d4d64e7f26d6e6a77b3860ee1f39c309bd564f801c39192042d2f",
+        "distro": "debian-10",
+        "type": "NAMI",
+        "version": "3.8.12-12"
+    },
+    "spark": {
+        "arch": "amd64",
+        "digest": "25360dbb59f225150c00c81cb9a9eb2ca4d1926e32ddef341cece33e7867a534",
+        "distro": "debian-10",
+        "type": "NAMI",
+        "version": "3.2.0-4"
+    }
+}
