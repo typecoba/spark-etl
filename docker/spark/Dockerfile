@@ -42,17 +42,17 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
 RUN echo "AcceptEnv JAVA_HOME" >> /etc/ssh/sshd_config
 RUN echo "AcceptEnv PYSPARK_PYTHON" >> /etc/ssh/sshd_config
-# replace 형식
 RUN mkdir -p /var/run/sshd
-EXPOSE 22
+# !run.sh에 /usr/sbin/sshd -D 로 실행필요
 
-
-# entrypoint에 /usr/sbin/sshd -D 로 실행
-
-# root pwd
+# root pwd 변경
 RUN echo "root:1234" | chpasswd
+
+# 히스토리서버 실행 -> 왜안됨?
+# RUN . /opt/bitnami/spark/sbin/start-history-server.sh
+
 
 WORKDIR /opt/bitnami/spark
 USER 1001
-ENTRYPOINT [ "/opt/bitnami/scripts/spark/entrypoint.sh" ]
+ENTRYPOINT [ "/opt/bitnami/scripts/spark/entrypoint.sh"]
 CMD [ "/opt/bitnami/scripts/spark/run.sh" ]

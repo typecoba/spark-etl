@@ -16,6 +16,7 @@ eval "$(spark_env)"
 
 print_welcome_page
 
+
 if [ ! $EUID -eq 0 ] && [ -e "$LIBNSS_WRAPPER_PATH" ]; then
     echo "spark:x:$(id -u):$(id -g):Spark:$SPARK_HOME:/bin/false" > "$NSS_WRAPPER_PASSWD"
     echo "spark:x:$(id -g):" > "$NSS_WRAPPER_GROUP"

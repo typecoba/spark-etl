@@ -16,6 +16,8 @@ eval "$(spark_env)"
 
 # ssh 서비스 실행
 /usr/sbin/sshd -D
+# histroy server 실행
+# . /opt/bitnami/spark/sbin/start-history-server.sh # 왜 작동안됨?
 
 if [ "$SPARK_MODE" == "master" ]; then
     # Master constants

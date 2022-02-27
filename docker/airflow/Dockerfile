@@ -44,6 +44,8 @@ ENV AIRFLOW_HOME="/opt/bitnami/airflow" \
 RUN apt-get update
 # RUN apt-get install vim -y
 RUN apt-get install ssh -y
+# config
+# RUN echo "default_timezone = Asia/Seoul" >> /opt/bitnami/airflow/airflow.cfg
 
 EXPOSE 8080
 
