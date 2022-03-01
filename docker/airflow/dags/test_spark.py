@@ -11,7 +11,8 @@ dag = DAG(
     start_date=datetime(2021, 1, 1), # 시작시간
     catchup=False, # 과거스케쥴 실행(backfill)을 사용하지 않도록
     # schedule_interval="@once", #  한번만실행
-    schedule_interval="*/2 * * * *",
+    schedule_interval="0 */1 * * *",
+    max_active_runs=3,
     tags=['test','spark'],
 )
 
@@ -28,9 +29,9 @@ end_dag = DummyOperator(
 bash_command = '''    
 /opt/bitnami/spark/bin/spark-submit \
     --master local[6] \
-    --num-executors 2 \
+    --num-executors 3 \
     --executor-memory 8G \
-    --executor-cores 3 \
+    --executor-cores 2 \
     --conf spark.yarn.am.waitTime=900000 \
     --conf spark.core.connection.ack.wait.timeout=600s \
     --conf spark.dynamicAllocation.enabled=false \
@@ -38,21 +39,6 @@ bash_command = '''
     /home/workspace/app.py 
 '''
 
-# bash_command = '''spark-submit'''
-
-# bash_command = "source ~/.bashrc /home/workspace/submit.sh "
-
-# t1 = DockerOperator(
-#     task_id='task_docker',
-#     image='docker.io/bitnami/spark:3',
-#     container_name='spark',
-#     api_version='auto',
-#     auto_remove=True,
-#     command=bash_command,
-#     # docker_url='tcp://localhost:8080',
-#     # newtwork_mode='bridge',
-#     dag=dag,
-# )
 
 t1 = SSHOperator(
     task_id='task1_ssh',
