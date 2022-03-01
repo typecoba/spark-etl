@@ -1,2 +1,3 @@
 /docker/airflow/airflow-persistence/
+/docker/spark/spark-events/
 __pycache__/
