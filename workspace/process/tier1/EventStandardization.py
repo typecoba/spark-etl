@@ -5,7 +5,11 @@ import os, gc
 from datetime import datetime, timedelta
 import time
 
-class RunProcessEventDaily:
+'''
+    서드파티 로우데이터 표준화
+    adbrix, branch, singular    
+'''
+class EventStandardization:
     warehouse_tier1_path = '/home/data/data-warehouse/tier1/event/'    
     start = time.time()
 
@@ -28,7 +32,7 @@ class RunProcessEventDaily:
         
         mindate = datetime.strptime(startdate, '%Y-%m-%d')
         maxdate = datetime.strptime('2021-12-31', '%Y-%m-%d')
-        daterange = [mindate + timedelta(hours=x) for x in range(0, (maxdate - mindate).days)]
+        daterange = [mindate + timedelta(days=x) for x in range(0, (maxdate - mindate).days)]
         
         for date in daterange:
             # path = self.warehouse_tier1_path + date.strftime('%Y-%m-%d/%H') # 폴더생성 path
