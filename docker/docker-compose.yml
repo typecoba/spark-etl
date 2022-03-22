@@ -63,20 +63,20 @@ services:
     depends_on:
       - spark
   
-  spark-worker-3:
-    # image: docker.io/bitnami/spark:3
-    build: ./spark/ # dockerfile 다운받아서 필요사항 추가
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark:7077
-      - SPARK_WORKER_MEMORY=8G
-      - SPARK_WORKER_CORES=2
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
-    depends_on:
-      - spark
+  # spark-worker-3:
+  #   # image: docker.io/bitnami/spark:3
+  #   build: ./spark/ # dockerfile 다운받아서 필요사항 추가
+  #   environment:
+  #     - SPARK_MODE=worker
+  #     - SPARK_MASTER_URL=spark://spark:7077
+  #     - SPARK_WORKER_MEMORY=8G
+  #     - SPARK_WORKER_CORES=2
+  #     - SPARK_RPC_AUTHENTICATION_ENABLED=no
+  #     - SPARK_RPC_ENCRYPTION_ENABLED=no
+  #     - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+  #     - SPARK_SSL_ENABLED=no
+  #   depends_on:
+  #     - spark
   
   # airflow
   postgresql:
@@ -87,6 +87,9 @@ services:
       - POSTGRESQL_PASSWORD=bitnami1
     volumes:
       - postgresql_data:/bitnami/postgresql
+    depends_on:
+      - spark # 순서
+
   redis:
     image: 'bitnami/redis:latest'
     environment:
@@ -145,6 +148,8 @@ services:
       - '38082:8080'
     volumes:      
       - ./airflow/dags:/opt/bitnami/airflow/dags # dag 위치      
+    depends_on:
+      - postgresql
 
 volumes:
   postgresql_data:
