@@ -31,20 +31,20 @@ class EventStandardization:
             startdate = '2021-01-01'
         
         mindate = datetime.strptime(startdate, '%Y-%m-%d')
-        maxdate = datetime.strptime('2021-12-31', '%Y-%m-%d')
+        maxdate = datetime.strptime('2022-01-01', '%Y-%m-%d')
         daterange = [mindate + timedelta(days=x) for x in range(0, (maxdate - mindate).days)]
         
         for date in daterange:
             # path = self.warehouse_tier1_path + date.strftime('%Y-%m-%d/%H') # 폴더생성 path
-            path = self.warehouse_tier1_path + f"{date.strftime('%Y-%m-%d')}" # 폴더확인
-            print(f'==== {path}')
+            path = self.warehouse_tier1_path + f"{date.strftime('%Y-%m-%d')}" # 폴더확인           
             if os.path.isdir(path) == False:
+                print(f'==== {path}')
                 os.makedirs(path)
                 self.process(date)
-                break             
+                break
         
         # test
-        # self.process(datetime.strptime('2021-06-04 00', '%Y-%m-%d %H'))
+        # self.process(datetime.strptime('2021-12-31', '%Y-%m-%d'))
         
     def process(self, datetime:datetime):
         print('==== process')
